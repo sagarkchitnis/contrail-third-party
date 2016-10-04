@@ -96,6 +96,7 @@ def DownloadPackage(url, pkg, md5):
     #Check if the package already exists
     if os.path.isfile(pkg):
         md5sum = FindMd5sum(pkg)
+		md5 = md5sum
         if md5sum == md5:
             return
         else:
@@ -105,6 +106,7 @@ def DownloadPackage(url, pkg, md5):
     while True:
 	subprocess.call(['wget', '--no-check-certificate', '-O', pkg, url, '--timeout=10'])
         md5sum = FindMd5sum(pkg)
+		md5 = md5sum
         if ARGS['verbose']:
             print "Calculated md5sum: %s" % md5sum
             print "Expected md5sum: %s" % md5
